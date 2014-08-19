@@ -59,7 +59,7 @@
         </div>
         <div id="row2" class="container">
             <div class="box w-full w-50pad">
-                <p class="gText bquote">Motivated by the desire to build a strong base for practical problem solving in several engineering colleges as well as to build their R & D potential, KSCST decided to promote student project programmes in a large number of educational institutions, located in Karnataka, in areas of engineering, medicine, fisheries and agriculture. It saw an enormous reservoir of talent and creativity in the students and the faculty of engineering colleges in Karnataka. KSCST, therefore, ventured into launching and implementing a programme, the Student Project Programme for providing financial and academic support for engineering projects.</p>
+                <p class="gText bquote">Motivated by the desire to build a strong base for practical problem solving in several engineering colleges as well as to build their R &amp; D potential, KSCST decided to promote student project programmes in a large number of educational institutions, located in Karnataka, in areas of engineering, medicine, fisheries and agriculture. It saw an enormous reservoir of talent and creativity in the students and the faculty of engineering colleges in Karnataka. KSCST, therefore, ventured into launching and implementing a programme, the Student Project Programme for providing financial and academic support for engineering projects.</p>
             </div>
         </div>
         <div id="row3" class="container">
@@ -70,6 +70,33 @@
                 <div class="icon"><a href="#"><p><i class="fa fa-sitemap"></i></p><span class="small">Department</span></a></div>
                 <div class="icon"><a href="#"><p><i class="fa fa-users"></i></p><span class="small">Team</span></a></div>
                 <div class="icon"><a href="#"><p><i class="fa fa-search"></i></p><span class="small">Search</span></a></div>
+            </div>
+        </div>
+        <div id="row4" class="container">
+            <p class="big clr5 tcenter gapBelow">Series at a glance</p>
+            <div class="box w-half">
+                <p class="largest clr3"><span class="b-right">36</span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+            </div>
+            <div class="box w-half">
+                <p class="largest clr3"><span class="b-right">35</span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+            </div>
+            <div class="box w-half">
+                <p class="largest clr3"><span class="b-right">34</span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+            </div>
+            <div class="box w-half">
+                <p class="largest clr3"><span class="b-right">33</span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+            </div>
+            <div class="box w-half">
+                <p class="largest clr3"><span class="b-right">32</span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+            </div>
+            <div class="box w-half">
+                <p class="dText clr4">At present, only details of projects sponsored before the 32nd series are included and the project reports will be made available soon.<br /><br /><span class="clr5 yes-ul"><a href="#">View Projects</a></span></p>
+                <p class="largest clr3"><span class="b-right">&lt;&lt;</span></p>
             </div>
         </div>
     </div>

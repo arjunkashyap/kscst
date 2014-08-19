@@ -1,4 +1,4 @@
-@font-face {
+    @font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: 400;
@@ -103,7 +103,7 @@ header nav ul li a{
 */
 }
 header nav ul li a:HOVER{
-    border-bottom: 2px solid #98b354;
+    border-bottom: 2px solid #278768;
 }
 header button{
     color: #444;
@@ -143,6 +143,11 @@ header button{
     width: 300px;
     min-height: 220px;
     align-items: center;
+    justify-content: center;
+}
+.w-900{
+    width: 900px;
+    min-height: 220px;
 }
 .w-500{
     width: 100%;
@@ -161,6 +166,23 @@ header button{
     min-height: 200px;
     margin: 0px auto;
     align-content: space-around;
+}
+.w-half{
+    width: 100%;
+    min-height: 200px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.w-half p{
+    max-width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    align-content: space-around;
+    margin-bottom: 100px;
 }
 .circle{
     line-height: 100px;
@@ -198,17 +220,35 @@ footer p{
 .biggest{
     font-size: 40px;
 }
+.large{
+    font-size: 50px;
+}
+.largest{
+    font-size: 100px;
+}
 .big{
     font-size: 30px;
 }
 .small{
     font-size: 20px;
 }
+.tiny{
+    font-size: 15px;
+}
 .clr1{
     color: #777;
 }
 .clr2{
     color: #3372df;
+}
+.clr3{
+    color: #AAA;
+}
+.clr4{
+    color: #555;
+}
+.clr5{
+    color: #da2e75;
 }
 .bgclr1{
     background-color: #224687;
@@ -235,6 +275,10 @@ footer p{
     color: #FFF;
     padding: 2em;
 }
+.dText{
+    line-height: 1.5em;
+    padding-left: 1em;
+}
 .tcenter{
     text-align: center;
     justify-content: center;
@@ -249,12 +293,130 @@ footer p{
 }
 .icon a{
     display: inline-block;
+    transition: color 0.3s ease-out;
 }
 .icon a:HOVER{
     color: #3372df;
+    transition: color 0.3s ease-out;
 }
 .gapBelow{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+}
+#row4{
+    margin-top: 75px;
+}
+.b-right{
+    border-right: 2px solid #da2e75;
+}
+.serif{
+    font-family: serif;
+}
+.itl{
+    font-style: italic;
+}
+.yes-ul a:HOVER{
+    text-decoration: underline;
+}
+.o-full{
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card-holder{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card-holder-desc{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.card{
+    width: 100%;
+    border: 2px solid #fcfcfc;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+.card img{
+    font-size: 0.9em;
+    max-width: 75px;
+    border-right: 1px solid #3372df;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.l-edge-hl1{
+    border-left: 5px solid #3372df;
+}
+.l-edge-hl2{
+    border-left: 5px solid #21b384;
+}
+.l-edge-hl3{
+    border-left: 5px solid #f9b24f;
+}
+.card .title{
+    font-size: 1em;
+    max-width: 180px;
+}
+.card .others{
+    font-size: 1em;
+}
+.card .others .heading{
+    color: #3372df;
+    font-size: 20px;
+}
+.card .link{
+    font-size: 1em;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+.card h2{
+    font-size: 1em;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+.pDesc{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    align-content: center;
+    flex-basis: 100%;
+}
+.pDesc .awards{
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 20px;
+}
+.pDesc .awards i{
+    font-size: 30px;
+    margin: 10px 0;
+}
+.title-bar{
+    font-size: 15px;
+    padding: 15px;
+}
+.big-dot{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 @media all and (min-width: 1024px) {
     .mainpage {
@@ -288,6 +450,9 @@ footer p{
     .w-300{
         min-height: 300px;
     }
+    .w-900{
+        min-height: 300px;
+    }
     .w-500{
         width: 500px;
     }
@@ -317,6 +482,27 @@ footer p{
         margin-left: -70px;
         font-family: serif;
     }
+    .w-half{
+        width: 480px;
+    }
+    .card{
+        width: 300px;
+    }
+    .title-bar{
+        font-size: 25px;
+    }
+    .pDesc .awards{
+        margin-right: 100px;
+    }
+    .pDesc .awards{
+        flex-grow: 1;
+        text-align: right;
+        margin-right: 20px;
+    }
+    .pDesc .awards i{
+        font-size: 50px;
+        margin: 0 10px;
+    }
 }
 @media all and (min-width: 1200px) {
     header{
@@ -328,5 +514,8 @@ footer p{
     }
     .w-full-pad{
         padding: 0 15%;
+    }
+    .w-half{
+        padding: 0 0%;
     }
 }
