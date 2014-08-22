@@ -21,10 +21,10 @@
         <div class="htitle long"><img src="php/images/logo.png" alt="KSCST Logo"/> <p>Karnataka State Council for Science and Technology</p></div>
         <nav class="navdrawer-container">
             <ul>
-                <li><span class="typ-a"><a href="">Home</a></span></li>
-                <li><span class="typ-a"><a href="">About SPP</a></span></li>
-                <li><span class="typ-a"><a href="">Archive</a></span></li>
-                <li><span class="typ-a"><a href="">Contact</a></span></li>
+                <li><span class="typ-a"><a href="javascript:void(0);">Home</a></span></li>
+                <li><span class="typ-a"><a href="php/about.php">About SPP</a></span></li>
+                <li><span class="typ-a"><a href="php/search.php">Search</a></span></li>
+                <?php session_start(); echo ($_SESSION['login'] == 'yes') ? "<li><span class=\"typ-a\"><a href=\"php/logout.php\">Logout</a></span></li>" : "<li><span class=\"typ-a\"><a href=\"php/login.php\">Login</a></span></li>"?>
             </ul>
         </nav>
         <button class="menu">☰</button>        
@@ -37,11 +37,11 @@
             <div class="w-600">
                 <div class="box w-300">
                     <div class="row">
-                        <div class="circle bgclr1">7200</div>
+                        <div class="circle bgclr1">6603</div>
                         <div class="desc">Projects funded</div>
                     </div>
                     <div class="row">
-                        <div class="circle bgclr2">21600</div>
+                        <div class="circle bgclr2">27042</div>
                         <div class="desc">Students benefited</div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <div class="desc">Colleges participated</div>
                     </div>
                     <div class="row">
-                        <div class="circle bgclr3">37</div>
+                        <div class="circle bgclr3">36</div>
                         <div class="desc">Years</div>
                     </div>
                 </div>
@@ -65,37 +65,37 @@
         <div id="row3" class="container">
             <p class="big clr2 tcenter gapBelow">Find a project</p>
             <div class="box w-full tcenter">
-                <div class="icon"><a href="#"><p><i class="fa fa-calendar"></i></p><span class="small">Year / Series</span></a></div>
-                <div class="icon"><a href="#"><p><i class="fa fa-university"></i></p><span class="small">College</span></a></div>
-                <div class="icon"><a href="#"><p><i class="fa fa-sitemap"></i></p><span class="small">Department</span></a></div>
-                <div class="icon"><a href="#"><p><i class="fa fa-users"></i></p><span class="small">Team</span></a></div>
-                <div class="icon"><a href="#"><p><i class="fa fa-search"></i></p><span class="small">Search</span></a></div>
+                <div class="icon"><a href="php/other-series.php"><p><i class="fa fa-calendar"></i></p><span class="small">Year / Series</span></a></div>
+                <div class="icon"><a href="php/search.php"><p><i class="fa fa-university"></i></p><span class="small">College</span></a></div>
+                <div class="icon"><a href="php/search.php"><p><i class="fa fa-sitemap"></i></p><span class="small">Department</span></a></div>
+                <div class="icon"><a href="php/search.php"><p><i class="fa fa-users"></i></p><span class="small">Team</span></a></div>
+                <div class="icon"><a href="php/search.php"><p><i class="fa fa-search"></i></p><span class="small">Search</span></a></div>
             </div>
         </div>
         <div id="row4" class="container">
             <p class="big clr5 tcenter gapBelow">Series at a glance</p>
             <div class="box w-half">
                 <p class="largest clr3"><span class="b-right">36</span></p>
-                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="php/about-series-036.php">More</a></span> | <span class="clr2 yes-ul"><a href="php/series.php?snum=036">Projects</a></span></p>
             </div>
             <div class="box w-half">
                 <p class="largest clr3"><span class="b-right">35</span></p>
-                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+                <p class="dText clr4">The activities of 35th Series of SPP started in October 2011. The Council contacted experts from Indian Institute of Science and various R &amp; D institutions in identifying thrust areas for selection of student projects.<br /><br /><span class="clr5 yes-ul"><a href="php/about-series-035.php">More</a></span> | <span class="clr2 yes-ul"><a href="php/series.php?snum=035">Projects</a></span></p>
             </div>
             <div class="box w-half">
                 <p class="largest clr3"><span class="b-right">34</span></p>
-                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+                <p class="dText clr4">34th Series of SPP was held at PES Institute of Technology and Management, Shimoga and 294 projects were sanctioned.The Student Project Programme has, by now, stimulated a large number of students and faculty to think about the problems of their immediate surroundings and to use their knowledge and training to improve their environment.<br /><br /><span class="clr5 yes-ul"><a href="php/about-series-034.php">More</a></span> | <span class="clr2 yes-ul"><a href="php/series.php?snum=034">Projects</a></span></p>
             </div>
             <div class="box w-half">
                 <p class="largest clr3"><span class="b-right">33</span></p>
-                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+                <p class="dText clr4">Shridevi Institute of Engineering and Technology, Tumkur was the place for 33rd Series of SPP and 291 projects were sanctioned.The work discipline acquired by students in evolving and executing their projects, improves their analytical and technical capabilities and methodology, enabling better performance at job interviews, besides getting a formal certificate of recognition.<br /><br /><span class="clr5 yes-ul"><a href="php/about-series-033.php">More</a></span> | <span class="clr2 yes-ul"><a href="php/series.php?snum=033">Projects</a></span></p>
             </div>
             <div class="box w-half">
                 <p class="largest clr3"><span class="b-right">32</span></p>
-                <p class="dText clr4">In the 36th Series (2012-2013) of this program, the Council received 1414 project proposals from 121 institutions and 363 projects have been supported with a total funding of about Rs. 18.27 lakhs.<br /><br /><span class="clr5 yes-ul"><a href="#">More</a></span> | <span class="clr2 yes-ul"><a href="#">Projects</a></span></p>
+                <p class="dText clr4">This is the 32nd SPP Seminar in the series conducted uninterruptedly.The sponsorship, by Karnataka State Council for Science & Technology, has become a benchmark of quality for engineering student projects and these projects have been highly valued by both academic and industrial communities<br /><br /><span class="clr5 yes-ul"><a href="php/about-series-032.php">More</a></span> | <span class="clr2 yes-ul"><a href="php/series.php?snum=032">Projects</a></span></p>
             </div>
             <div class="box w-half">
-                <p class="dText clr4">At present, only details of projects sponsored before the 32nd series are included and the project reports will be made available soon.<br /><br /><span class="clr5 yes-ul"><a href="#">View Projects</a></span></p>
+                <p class="dText clr4">At present, only details of projects sponsored before the 32nd series are included and the project reports will be made available soon.<br /><br /><span class="clr5 yes-ul"><a href="php/other-series.php">View other series</a></span></p>
                 <p class="largest clr3"><span class="b-right">&lt;&lt;</span></p>
             </div>
         </div>
