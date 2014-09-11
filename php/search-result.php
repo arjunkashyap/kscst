@@ -5,37 +5,7 @@
 		exit(1);
 	}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Home | KSCST | Student Project Program</title>
-    <meta name="description" content="Student Project Programme, KSCST">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="style/normalize.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="style/indexstyle.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="style/font-awesome-4.1.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
-
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-</head>
-
-<body>
-    <header class="app-bar">
-        <div class="htitle short"><img src="images/logo.png" alt="KSCST Logo"/> <p>KSCST</p></div>
-        <div class="htitle long"><img src="images/logo.png" alt="KSCST Logo"/> <p>Karnataka State Council for Science and Technology</p></div>
-        <nav class="navdrawer-container">
-            <ul>
-                <li><span class="typ-a"><a href="../index.php">Home</a></span></li>
-                <li><span class="typ-a"><a href="about.php">About SPP</a></span></li>
-                <li><span class="typ-a"><a href="search.php">Search</a></span></li>
-                <?php session_start(); echo ($_SESSION['login'] == 'yes') ? "<li><span class=\"typ-a\"><a href=\"logout.php\">Logout</a></span></li>" : "<li><span class=\"typ-a\"><a href=\"login.php\">Login</a></span></li>"?>
-            </ul>
-        </nav>
-        <button class="menu">☰</button>        
-    </header>    
+<?php include("includes/header.php");?>
     <div class="mainpage">
         <div id="row4" class="container">
 
