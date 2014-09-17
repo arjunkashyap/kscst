@@ -70,4 +70,4 @@
             </div>
         </div>
     </div>
-<?php include("includes/footer.php");?>
+<?php include("php/includes/footer.php");?>
