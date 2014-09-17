@@ -5,18 +5,30 @@ require_once("connect.php");
 require_once('recaptchalib.php');
 require_once('includes/class.phpmailer.php');
 
-$error_message = array("0"=>"","1"=>"Name can not be left blank<br />","2"=>"E-mail can not be left blank<br />","3"=>"Profession field can not be left blank<br />","4"=>"Password field is empty<br />","5"=>"Confirm-password filed is empty<br />","6"=>"Passwords not in confirmation<br />","7"=>"Invalid CAPTCHA! Please try again<br />","8"=>"Invalid e-mail!<br />");
+$db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
+$rs = mysql_select_db($database,$db) or die("No Database");
+mysql_query("set names utf8");
+    
+$error_message = array("0"=>"","1"=>"Name can not be left blank<br />","2"=>"E-mail can not be left blank<br />","3"=>"Profession field can not be left blank<br />","4"=>"Password field is empty<br />","5"=>"Confirm-password field is empty<br />","6"=>"Passwords not in confirmation<br />","7"=>"Invalid CAPTCHA! Please try again<br />","8"=>"Invalid e-mail!<br />");
 
 $publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
 $privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
 
 $error_val = 0;
 
-if(isset($_POST['message'])){$message = $_POST['message'];if($message == ''){$error_val = 5;}}else{$message = '';}
-if(isset($_POST['subject'])){$subject = $_POST['subject'];if($subject == ''){$error_val = 4;}}else{$subject = '';}
-if(isset($_POST['type'])){$type = $_POST['type'];if($type == ''){$error_val = 3;}}else{$type = '';}
-if(isset($_POST['email'])){$email = $_POST['email'];if($email == ''){$error_val = 2;}else{if(!(preg_match("/.*\@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+/", $email))){$error_val = 7;}}}else{$email = '';}
+if(isset($_POST['affiliation'])){$affiliation = $_POST['affiliation'];if($affiliation == ''){$error_val = 4;}}else{$affiliation = '';}
+if(isset($_POST['profession'])){$profession = $_POST['profession'];if($profession == ''){$error_val = 3;}}else{$profession = '';}
+if(isset($_POST['email'])){$email = $_POST['email'];if($email == ''){$error_val = 2;}else{if(!(preg_match("/.*\@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+/", $email))){$error_val = 8;}}}else{$email = '';}
 if(isset($_POST['name'])){$name = $_POST['name'];if($name == ''){$error_val = 1;}}else{$name = '';}
+
+if($error_val == 0) {
+    if(isset($_POST['cpassword'])){$cpassword = $_POST['cpassword'];if($cpassword == ''){$error_val = 5;}}else{$cpassword = '';}
+    if(isset($_POST['password'])){$pwd = $_POST['password'];if($pwd == ''){$error_val = 4;}}else{$pwd = '';}
+}
+if($error_val == 0) {
+    if($pwd != $cpassword){$error_val = 6;}
+}
+
 $resp = null;
 $error = null;
 
@@ -32,7 +44,7 @@ if($error_val == 0)
             if ($resp->is_valid) {
                     
             } else {
-                    $error_val = 6;
+                    $error_val = 7;
             }
     }
 }
@@ -43,29 +55,60 @@ echo "<div id=\"row4\" class=\"container\">";
 
 if(($error_val == 0) && ($isfirst == 0))
 {
-    $to = $supportEmail;
-    
-    $mail = new PHPMailer();
-    $mail->isSendmail();
-    $mail->WordWrap = 50;
-    $mail->setFrom($email, $name);
-    $mail->addReplyTo($email, $name);
-    $mail->addAddress($to, 'Advaita Sharada');
-    $mail->Subject = '[' . $type . '] ' . $subject;
-    $mail->Body = $message;
+    $query_reg = "select count(*) from userdetails where email='$email'";
+    $result_reg = mysql_query($query_reg);
+    $row_reg=mysql_fetch_assoc($result_reg);
+    $num=$row_reg['count(*)'];
 
-    if($mail->send())
+    if($num == 0)
     {
-        echo "<p class=\"fgentium small clr\">Thank you for giving your feedback. You wil hear from us shortly.<br />Now you will be redirected to the home page.</p>";
+        $salt = "shankara";
+        $pwd = sha1($salt.$pwd);
+        
+        $query = "INSERT INTO userdetails values('$name','$email','$profession','$pwd','$affiliation','','0','1','')";
+        $result = mysql_query($query);
+
+        if($result)
+        {
+            $_SESSION['email'] = $email;
+            $_SESSION['valid'] = 1;
+            
+            echo "<p class=\"fgentium small clr\">Registration Successful!</p>";
+            
+            $to = $email;
+
+            $tstamp = time();
+            $hash = sha1($pwd.$name.$email.$tstamp);
+
+            $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to confirm your registration:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash\">http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash</a><br /><br />Thanks,<br />Team SPP<br />Karnataka State Council for Science and Technology";
+
+            $mail = new PHPMailer();
+            $mail->isSendmail();
+            $mail->WordWrap = 50;
+            $mail->setFrom($supportEmail, $supportName);
+            $mail->addReplyTo($supportEmail, $supportName);
+            $mail->addAddress($to, $name);
+            $mail->Subject = '[KSCST SPP] Please verify your email';
+            $mail->Body = $message;
+
+            if($mail->send())
+            {
+                echo "<p class=\"fgentium small clr\">An email has been sent to your address $to from $supportEmail. Use the link given there within the next 24 hours to confirm your registration.<br />If you have not received the email yet, check in your spam folder</p>";
+            }
+            else
+            {
+                echo "<p class=\"fgentium small clr\">".$mail->ErrorInfo."<br />Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
+            }
+        }
+        else
+        {
+            echo "<p class=\"fgentium small clr\">Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
+        }
     }
     else
     {
-        echo "<p class=\"fgentium small clr\">".$mail->ErrorInfo."<br />Error encountered while submitting your feedback. Please try again after some time. Sorry for the inconvenience.</p>";
+        echo "<p class=\"fgentium small clr\">This e-mail id seems to be already registered with us. Try logging in or use another id.</p>";
     }
-
-    echo "  </div>";
-    echo "</div>";
-    include("includes/footer.php");
 }
 elseif(($error_val > 0) || ($isfirst == 1))
 {
@@ -83,19 +126,19 @@ elseif(($error_val > 0) || ($isfirst == 1))
                         </li>
                         <li>
                             <label for="name">Name&nbsp;<span class="clr2">*</span></label><br />
-                            <input class="rinput" type="text" name="name" />
+                            <input class="rinput" type="text" name="name" value="<?php echo $name;?>"/>
                         </li>
                         <li>
                             <label for="email">Email&nbsp;<span class="clr2">*</span></label><br />
-                            <input class="rinput" type="text" name="email" />
+                            <input class="rinput" type="text" name="email" value="<?php echo $email;?>"/>
                         </li>
                         <li>
                             <label for="email">Profession&nbsp;<span class="clr2">*</span></label><br />
-                            <input class="rinput" type="text" name="profession" />
+                            <input class="rinput" type="text" name="profession" value="<?php echo $profession;?>"/>
                         </li>
                         <li>
                             <label for="info">Affiliation</label><br />
-                            <textarea class="rinput tinput" name="info" placeholder="Please tell us about your affiliation and interest in KSCST Student Project Program."></textarea>
+                            <textarea class="rinput tinput" name="affiliation" placeholder="Please tell us about your affiliation and interest in KSCST Student Project Program."><?php echo $affiliation;?></textarea>
                         </li>
                         <li>
                             <label for="password">Password&nbsp;<span class="clr2">*</span></label><br />
@@ -117,11 +160,11 @@ echo recaptcha_get_html($publickey);
                 </div>
             </div>
         </form>
-    </div>
-</div>
-
 <?php
-
-include("includes/footer.php");
 }
+
+echo "  </div>";
+echo "</div>";
+include("includes/footer.php");
+
 ?>
