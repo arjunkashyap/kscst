@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 $header = "\n";
@@ -29,7 +30,7 @@ $header .= "                    <span class=\"typ-a\">";
 
 if(isset($_SESSION['login']))
 {
-    ($_SESSION['login'] == 'yes') ? $header .= "<a href=\"php/logout.php\">Logout</a>" : $header .= "<a href=\"php/login.php\">Login</a>";
+    ($_SESSION['login'] == 1) ? $header .= "<a href=\"php/logout.php\">Logout</a>" : $header .= "<a href=\"php/login.php\">Login</a>";
 }
 else
 {

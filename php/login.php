@@ -1,5 +1,9 @@
 <?php
 
+include("includes/header.php");
+echo "<div class=\"mainpage\">";
+echo "<div id=\"row4\" class=\"container\">";
+
 require_once("common.php");
 require_once("connect.php");
 require_once('recaptchalib.php');
@@ -7,48 +11,30 @@ require_once('includes/class.phpmailer.php');
 
 $error_message = array("0"=>"","1"=>"E-mail field is empty<br />","2"=>"Password field is empty<br />","3"=>"Invalid email or password.<br />");
 
-$publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
-$privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
-
 $error_val = 0;
+$isfirst = 1;
 
 if(isset($_POST['lpassword'])){$lpassword = $_POST['lpassword'];if($lpassword == ''){$error_val = 2;}}else{$lpassword = '';}
 if(isset($_POST['lemail'])){$lemail = $_POST['lemail'];if($lemail == ''){$error_val = 1;}}else{$lemail = '';}
 
-$resp = null;
-$error = null;
-
-$isfirst = 1;
-
-include("includes/header.php");
-echo "<div class=\"mainpage\">";
-echo "<div id=\"row4\" class=\"container\">";
+if(($lemail != '') && ($lpassword != '') && ($error_val == 0)) {
+    if(VerifyCredentials($lemail, $lpassword)) {
+        $isfirst = 0;
+    }
+    else {
+        $error_val = 3;
+    }
+}
 
 if(($error_val == 0) && ($isfirst == 0))
 {
-    $to = $supportEmail;
-    
-    $mail = new PHPMailer();
-    $mail->isSendmail();
-    $mail->WordWrap = 50;
-    $mail->setFrom($email, $name);
-    $mail->addReplyTo($email, $name);
-    $mail->addAddress($to, 'Advaita Sharada');
-    $mail->Subject = '[' . $type . '] ' . $subject;
-    $mail->Body = $message;
-
-    if($mail->send())
-    {
-        echo "<p class=\"fgentium small clr\">Thank you for giving your feedback. You wil hear from us shortly.<br />Now you will be redirected to the home page.</p>";
+    if(isset($_SESSION['refererUrl'])){
+        @header("Location: " . $_SESSION['refererUrl']);
     }
-    else
-    {
-        echo "<p class=\"fgentium small clr\">".$mail->ErrorInfo."<br />Error encountered while submitting your feedback. Please try again after some time. Sorry for the inconvenience.</p>";
+    else{
+        @header("Location: ../index.php");
     }
-
-    echo "  </div>";
-    echo "</div>";
-    include("includes/footer.php");
+    exit;
 }
 elseif(($error_val > 0) || ($isfirst == 1))
 {
@@ -85,11 +71,11 @@ elseif(($error_val > 0) || ($isfirst == 1))
                 </div>
             </div>
         </form>
-    </div>
-</div>
 
 <?php
-
-include("includes/footer.php");
 }
+echo "  </div>";
+echo "</div>";
+include("includes/footer.php");
+
 ?>

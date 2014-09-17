@@ -138,36 +138,34 @@ function createFilter($term, $field)
 }
 function VerifyCredentials($lemail, $lpassword)
 {
-	session_start();
 	include("connect.php");
 	
-	$salt = "shankara";
-	$lpassword = sha1($salt.$lpassword);
+    $db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
+    $rs = mysql_select_db($database,$db) or die("No Database");
+    mysql_query("set names utf8");
 
-	$query_l2 = "select count(*) from details where email='$lemail' and password='$lpassword'";
+	$salt = "kscst";
+/*
+	$lpassword = sha1($salt.$lpassword);
+*/
+
+	$query_l2 = "select count(*) from userdetails where email='$lemail' and password='$lpassword'";
+    
 	$result_l2 = mysql_query($query_l2);
 	$row_l2=mysql_fetch_assoc($result_l2);
 	$num=$row_l2['count(*)'];
 	if($num > 0)
 	{
-		$query_l3 = "update details set visitcount=visitcount+1 where email='$lemail'";
+		$query_l3 = "update userdetails set visitcount=visitcount+1 where email='$lemail'";
 		$result_l3 = mysql_query($query_l3);
 		
 		$_SESSION['email'] = $lemail;
-		$_SESSION['valid'] = 1;
-		
-        if(isset($_SESSION['refererUrl'])){
-            @header("Location: " . $_SESSION['refererUrl']);
-        }
-        else{
-            @header("Location: prasthanatraya.php");
-        }
-		exit;
+        $_SESSION['login'] = 1;
+        return True;
 	}
 	else
 	{
-		@header("Location: login.php?error=3");
-		exit;
+		return False;
 	}
 }
 /*
