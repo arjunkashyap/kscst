@@ -48,7 +48,7 @@ elseif(($error_val > 0) || ($isfirst == 1))
                 <div class="otherp">
                     <ul>
                         <li>
-                            <h2 class="clr2 required_notification"><?php echo $err_str;?></h2>
+                            <p class="clr5 required_notification"><?php echo $err_str;?></p>
                         </li>
                         <li>
                             <label for="lemail">Email&nbsp;<span class="clr2">*</span></label><br />

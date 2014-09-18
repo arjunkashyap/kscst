@@ -123,7 +123,7 @@ elseif(($error_val > 0) || ($isfirst == 1))
                 <div class="otherp">
                     <ul>
                          <li>
-                            <p class="clr1 required_notification"><?php echo $err_str; ?></p>
+                            <p class="clr5 required_notification"><?php echo $err_str; ?></p>
                         </li>
                         <li>
                             <label for="name">Name&nbsp;<span class="clr2">*</span></label><br />
