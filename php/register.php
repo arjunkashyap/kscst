@@ -65,7 +65,10 @@ if(($error_val == 0) && ($isfirst == 0))
         $salt = "kscst";
         $pwd = sha1($salt.$pwd);
         
-        $query = "INSERT INTO userdetails values('$name','$email','$profession','$pwd','$affiliation','','0','1','')";
+        $tstamp = time();
+        $hash = sha1($pwd.$name.$email.$tstamp);
+        
+        $query = "INSERT INTO userdetails values('$name','$email','$profession','$pwd','$affiliation','','0','1','$hash','$tstamp','')";
         $result = mysql_query($query);
 
         if($result)
@@ -77,10 +80,7 @@ if(($error_val == 0) && ($isfirst == 0))
             
             $to = $email;
 
-            $tstamp = time();
-            $hash = sha1($pwd.$name.$email.$tstamp);
-
-            $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to confirm your registration:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash\">http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash</a><br /><br />Thanks,<br />Team SPP<br />Karnataka State Council for Science and Technology";
+            $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to confirm your registration:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/verifyRegistration.php?verify=$hash\">http://spp.kscst.iisc.ernet.in/php/verifyRegistration.php?verify=$hash</a><br /><br />Thanks,<br />Team SPP<br />Karnataka State Council for Science and Technology";
 
                 $mail = new PHPMailer();
                 $mail->isSendmail();

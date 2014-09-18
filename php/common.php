@@ -166,6 +166,34 @@ function VerifyCredentials($lemail, $lpassword)
 		return False;
 	}
 }
+function hasVerifyExpired($verify)
+{
+  	include("connect.php");
+	
+	$query_l2 = "select *,count(*) from userdetails where hash='$verify'";
+	$result_l2 = mysql_query($query_l2);
+	$row_l2=mysql_fetch_assoc($result_l2);
+	$num=$row_l2['count(*)'];
+	if ($num == 0)
+    {
+        return True;
+    }
+    else
+    {
+        $tstamp=$row_l2['timestamp'];
+        $cstamp = time();
+        if(floor(($cstamp - $tstamp) / 3600) > 24)
+        {
+            $query = "DELETE from userdetails where timestamp<='$tstamp'";
+            $result = mysql_query($query);            
+            return True;
+        }
+        else
+        {
+            return False;
+        }
+    }
+}
 /*
 isValidTitle, isValidFeature, isValidAuthor, isValidText
 */
