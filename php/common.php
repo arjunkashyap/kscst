@@ -145,9 +145,7 @@ function VerifyCredentials($lemail, $lpassword)
     mysql_query("set names utf8");
 
 	$salt = "kscst";
-/*
 	$lpassword = sha1($salt.$lpassword);
-*/
 
 	$query_l2 = "select count(*) from userdetails where email='$lemail' and password='$lpassword'";
     

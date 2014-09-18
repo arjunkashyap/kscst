@@ -62,7 +62,7 @@ if(($error_val == 0) && ($isfirst == 0))
 
     if($num == 0)
     {
-        $salt = "shankara";
+        $salt = "kscst";
         $pwd = sha1($salt.$pwd);
         
         $query = "INSERT INTO userdetails values('$name','$email','$profession','$pwd','$affiliation','','0','1','')";
@@ -73,7 +73,7 @@ if(($error_val == 0) && ($isfirst == 0))
             $_SESSION['email'] = $email;
             $_SESSION['valid'] = 1;
             
-            echo "<p class=\"fgentium small clr\">Registration Successful!</p>";
+            echo "<p>Registration Successful!<br /><br /></p>";
             
             $to = $email;
 
@@ -82,32 +82,33 @@ if(($error_val == 0) && ($isfirst == 0))
 
             $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to confirm your registration:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash\">http://spp.kscst.iisc.ernet.in/php/verifyRegistartion.php?verify=$hash</a><br /><br />Thanks,<br />Team SPP<br />Karnataka State Council for Science and Technology";
 
-            $mail = new PHPMailer();
-            $mail->isSendmail();
-            $mail->WordWrap = 50;
-            $mail->setFrom($supportEmail, $supportName);
-            $mail->addReplyTo($supportEmail, $supportName);
-            $mail->addAddress($to, $name);
-            $mail->Subject = '[KSCST SPP] Please verify your email';
-            $mail->Body = $message;
+                $mail = new PHPMailer();
+                $mail->isSendmail();
+                $mail->isHTML(true);
+                $mail->WordWrap = 50;
+                $mail->setFrom($supportEmail, $supportName);
+                $mail->addReplyTo($supportEmail, $supportName);
+                $mail->addAddress($to, $name);
+                $mail->Subject = '[KSCST SPP] Please verify your email';
+                $mail->Body = $message;
 
             if($mail->send())
             {
-                echo "<p class=\"fgentium small clr\">An email has been sent to your address $to from $supportEmail. Use the link given there within the next 24 hours to confirm your registration.<br />If you have not received the email yet, check in your spam folder</p>";
+                echo "<p>An email has been sent to your address. Use the link given there within the next 24 hours to confirm your registration.<br />If you have not received the email yet, check in your spam folder</p>";
             }
             else
             {
-                echo "<p class=\"fgentium small clr\">".$mail->ErrorInfo."<br />Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
+                echo "<p>".$mail->ErrorInfo."<br />Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
             }
         }
         else
         {
-            echo "<p class=\"fgentium small clr\">Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
+            echo "<p>Error encountered while registering. Please try again after some time. Sorry for the inconvenience.</p>";
         }
     }
     else
     {
-        echo "<p class=\"fgentium small clr\">This e-mail id seems to be already registered with us. Try logging in or use another id.</p>";
+        echo "<p>This e-mail id seems to be already registered with us. Try logging in or use another id.</p>";
     }
 }
 elseif(($error_val > 0) || ($isfirst == 1))
