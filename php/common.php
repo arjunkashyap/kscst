@@ -147,7 +147,7 @@ function VerifyCredentials($lemail, $lpassword)
 	$salt = "kscst";
 	$lpassword = sha1($salt.$lpassword);
 
-	$query_l2 = "select count(*) from userdetails where email='$lemail' and password='$lpassword'";
+	$query_l2 = "select count(*) from userdetails where email='$lemail' and password='$lpassword' and isverified='1'";
     
 	$result_l2 = mysql_query($query_l2);
 	$row_l2=mysql_fetch_assoc($result_l2);
