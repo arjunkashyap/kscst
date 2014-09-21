@@ -14,6 +14,74 @@ $error_message = array("0"=>"","1"=>"E-mail field is empty<br />","2"=>"Password
 $error_val = 0;
 $isfirst = 1;
 
+if(isset($_POST['pr_email']))
+{
+    if($_POST['pr_email'] != '')
+    {
+        $pr_email = $_POST['pr_email'];
+
+        if(!(preg_match("/.*\@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+/", $pr_email)))
+		{
+			@header("Location: reset_password.php?status=4");
+            exit;
+		}
+        
+        $to = $pr_email;
+        
+        $db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
+        $rs = mysql_select_db($database,$db) or die("No Database");
+        
+        $query_l2 = "select password,name,email from userdetails where email='$pr_email'";
+        $result_l2 = mysql_query($query_l2);
+        $num_rows_l2 = mysql_num_rows($result_l2);
+        if($num_rows_l2 > 0)
+        {
+            $row_l2=mysql_fetch_assoc($result_l2);
+
+            $pwd=$row_l2['password'];
+            $name=$row_l2['name'];
+            $email=$row_l2['email'];
+            $tstamp = time();
+
+            $hash = sha1($pwd.$name.$email.$tstamp);
+            
+            $query_l3 = "INSERT INTO reset values('$hash','$email','$name','$pwd','$tstamp','')";
+            $result_l3 = mysql_query($query_l3);
+            
+            $from = $supportEmail;
+            
+            $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to reset your password:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/reset_password.php?reset=$hash\">http://spp.kscst.iisc.ernet.in/php/reset_password.php?reset=$hash</a><br /><br />Team SPP<br />Karnataka State Council for Science and Technology";
+            $mail = new PHPMailer();
+            $mail->isSendmail();
+            $mail->isHTML(true);
+            $mail->WordWrap = 50;                           
+            $mail->IsHTML(true);
+            $mail->setFrom($from, $supportName);
+            $mail->addReplyTo($from, $supportName);
+            $mail->addAddress($to, $name);
+            $mail->addBCC($from);
+            $mail->Subject = '[KSCST SPP] Password reset';
+            $mail->Body = $message;
+
+            if($mail->send())
+            {
+                @header("Location: reset_password.php?status=1");
+                exit;
+            }
+            else
+            {
+                @header("Location: reset_password.php?status=2");
+                exit;
+            }
+        }
+        else
+        {
+            @header("Location: reset_password.php?status=3");
+            exit;
+        }
+    }
+}
+
 if(isset($_POST['lpassword'])){$lpassword = $_POST['lpassword'];if($lpassword == ''){$error_val = 2;}}else{$lpassword = '';}
 if(isset($_POST['lemail'])){$lemail = $_POST['lemail'];if($lemail == ''){$error_val = 1;}}else{$lemail = '';}
 
@@ -65,7 +133,7 @@ elseif(($error_val > 0) || ($isfirst == 1))
                         <li id="regForm">
                             <input class="rsubmit" type="submit" name="submit" value="submit"/>
                             <p class="forgotPassword fright clr2"><a href="javascript:void(0);" onclick="$('#lemail').prop('disabled', true);$('#lpassword').prop('disabled', true);$('#regForm h2').hide();$('#pr_email_show').show();">Forgot your password?</a></p>
-                            <h4 class="clr2" style="margin-top: 3em;"><a href="register.php">Click here to register, if you are a first time user</a></h2>
+                            <p class="clr2" style="margin-top: 3em;"><a href="register.php">Click here to register, if you are a first time user</a></p>
                         </li>
                     </ul>
                 </div>
