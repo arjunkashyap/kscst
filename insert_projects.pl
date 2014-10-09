@@ -38,7 +38,7 @@ while($line)
 		$year = $2;
         print $snum . "\n";
 	}
-	elsif($line =~ /<project id="(.*)" date="(.*)" awards="(.*)"  poy="(.*)">/)
+	elsif($line =~ /<project id="(.*)" date="(.*)" awards="(.*)" poy="(.*)">/)
 	{
 		$id = $1;
 		$date = $2;
