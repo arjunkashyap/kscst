@@ -125,6 +125,7 @@ if($num_rows > 0)
 		$row = $result->fetch_assoc();
 		
 		$snum = $row['snum'];
+		$year = $row['year'];
 		$title = $row['title'];
         $abstract = $row['abstract'];
         $college = $row['college'];
@@ -152,8 +153,8 @@ if($num_rows > 0)
             echo "<div class=\"card\" id=\"".$projectid."\">";
             echo (file_exists("images/cover/".$snum."/".$projectid.".jpg")) ? "<img src=\"images/cover/".$snum."/".$projectid.".jpg\" alt=\"Cover ".$snum." ".$projectid."\"/>" : "";
             echo "  <p class=\"title\">".$title."</p>";
+            echo "  <div class=\"seriesPop\"><p class=\"series\"><a href=\"series.php?snum=" . $snum . "\" title=\"Series " . intval($snum) . " (" . $year . ")\">".intval($snum)."</a></p></div>";
             echo "  <p class=\"others\">";
-            echo "      <span class=\"dept-span clr2 bld\">".intval($snum)."</span><br />";
             echo "      <span class=\"dept-span clr2\">".$department.",</span><br />";
             echo "      <span class=\"college-span clr2\">".$college."</span><br />";
             echo "  </p>";
