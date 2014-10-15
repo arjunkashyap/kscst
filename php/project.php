@@ -50,7 +50,7 @@ if($num_rows > 0)
     echo "  <p class=\"largest clr3\"><span class=\"b-right\">".str_pad(intval($snum), 2, "0", STR_PAD_LEFT)."</span></p>";
     echo (file_exists("images/cover/".$snum."/".$projectid.".jpg")) ? "<p class=\"dText\"><img src=\"images/cover/".$snum."/".$projectid.".jpg\" alt=\"Cover ".$snum." ".$projectid."\"/></p>" : "<p class=\"dText\"><span class=\"clr2 yes-ul\">".$year."</span></p>";
     
-    if(intval($snum) >= 32)
+    if(intval($snum) >= DIGITIZEDFROM)
     {
         echo "  <p class=\"dText clr4\" style=\"line-height: 2em;\">";
         echo "      <span class=\"yes-ul\"><i class=\"fa fa-file-text-o\" title=\"Project of the year\"></i>&nbsp;&nbsp;<a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span><br />";

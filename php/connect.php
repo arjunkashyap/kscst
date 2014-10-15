@@ -1,4 +1,7 @@
 <?php
+
+include("config.php");
+
 $user='root';
 $password='mysql';
 $database='kscst';

@@ -70,7 +70,7 @@ if($num_rows > 0)
         echo "  </p>";
         echo "  <div class=\"link\">";
         echo "      <p><span class=\"link-span clr5 yes-ul\"><a href=\"project.php?snum=".$snum."&amp;projectid=".$projectid."\">More</a></span>";
-        echo (intval($snum) >= 32) ? " | <span class=\"link-span clr5 yes-ul\"><a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span> | <span class=\"link-span clr5 yes-ul\"><a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Report</a></span>" : "";
+        echo (intval($snum) >= DIGITIZEDFROM) ? " | <span class=\"link-span clr5 yes-ul\"><a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span> | <span class=\"link-span clr5 yes-ul\"><a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Report</a></span>" : "";
         echo "      </p>";
         echo "      <p>";
         echo ($poy == '1') ? "<i class=\"fa fa-trophy clr2\" title=\"Project of the year\"></i>" : "";
