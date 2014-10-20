@@ -107,8 +107,8 @@ elseif($text!='')
 $result = $db->query($query); 
 $num_rows = $result ? $result->num_rows : 0;
 
-echo "<div class=\"pDesc\">";
-echo "  <p class=\"largest clr3\"><span class=\"b-right\">Results</span></p>";
+echo "<div class=\"pDesc gapBelow\">";
+echo "  <p class=\"largest-text clr3\"><span class=\"b-right\">Results</span></p>";
 echo "  <p class=\"dText clr4\" style=\"line-height: 2em;\">";
 echo ($num_rows > 0) ? "<span class=\"clr2 yes-ul big\">".$num_rows."</span><br />" : "No Results";
 echo "  </p>";

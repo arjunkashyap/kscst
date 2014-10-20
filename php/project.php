@@ -47,7 +47,7 @@ if($num_rows > 0)
     $poy = $row['poy'];
         
     echo "<div class=\"pDesc\">";
-    echo "  <p class=\"largest clr3\"><span class=\"b-right\">".str_pad(intval($snum), 2, "0", STR_PAD_LEFT)."</span></p>";
+    echo "  <p class=\"largest-text clr3\"><span class=\"b-right\">".str_pad(intval($snum), 2, "0", STR_PAD_LEFT)."</span></p>";
     echo (file_exists("images/cover/".$snum."/".$projectid.".jpg")) ? "<p class=\"dText\"><img src=\"images/cover/".$snum."/".$projectid.".jpg\" alt=\"Cover ".$snum." ".$projectid."\"/></p>" : "<p class=\"dText\"><span class=\"clr2 yes-ul\">".$year."</span></p>";
     
     if(intval($snum) >= DIGITIZEDFROM)
