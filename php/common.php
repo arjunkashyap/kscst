@@ -168,7 +168,7 @@ function VerifyCredentials($lemail, $lpassword)
 }
 function hasVerifyExpired($verify)
 {
-  	include("connect.php");
+  	@include("connect.php");
 	
 	$query_l2 = "select *,count(*) from userdetails where hash='$verify'";
 	$result_l2 = mysql_query($query_l2);
@@ -196,7 +196,7 @@ function hasVerifyExpired($verify)
 }
 function hasResetExpired($reset)
 {
-    include("connect.php");
+    @include("connect.php");
     
     $db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
     $rs = mysql_select_db($database,$db) or die("No Database");
