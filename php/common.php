@@ -138,7 +138,7 @@ function createFilter($term, $field)
 }
 function VerifyCredentials($lemail, $lpassword)
 {
-	include("connect.php");
+	@include("connect.php");
 	
     $db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
     $rs = mysql_select_db($database,$db) or die("No Database");
