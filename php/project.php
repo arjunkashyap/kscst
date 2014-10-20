@@ -54,7 +54,7 @@ if($num_rows > 0)
     {
         echo "  <p class=\"dText clr4\" style=\"line-height: 2em;\">";
         echo "      <span class=\"yes-ul\"><i class=\"fa fa-file-text-o\" title=\"Project of the year\"></i>&nbsp;&nbsp;<a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span><br />";
-        echo "      <span class=\"yes-ul\"><i class=\"fa fa-book\" title=\"Project of the year\"></i>&nbsp;&nbsp;<a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Report</a></span>";
+        echo "      <span class=\"yes-ul\"><i class=\"fa fa-book\" title=\"Project of the year\"></i>&nbsp;&nbsp;<a href=\"viewReport.php?snum=".$snum."&amp;projectid=".$projectid."\">Report</a></span>";
         echo "  </p>";
     }
     

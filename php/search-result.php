@@ -160,7 +160,7 @@ if($num_rows > 0)
             echo "  </p>";
             echo "  <div class=\"link\">";
             echo "      <p><span class=\"link-span clr5 yes-ul\"><a href=\"project.php?snum=".$snum."&amp;projectid=".$projectid."\">More</a></span>";
-            echo (intval($snum) >= 32) ? " | <span class=\"link-span clr5 yes-ul\"><a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span> | <span class=\"link-span clr5 yes-ul\"><a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Report</a></span>" : "";
+            echo (intval($snum) >= 32) ? " | <span class=\"link-span clr5 yes-ul\"><a href=\"../Abstract/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=1&amp;zoom=page\">Abstract</a></span> | <span class=\"link-span clr5 yes-ul\"><a href=\"viewReport.php?snum=".$snum."&amp;projectid=".$projectid."\">Report</a></span>" : "";
             echo "      </p>";
             echo "      <p>";
             echo ($poy == '1') ? "<i class=\"fa fa-trophy clr2\" title=\"Project of the year\"></i>" : "";
@@ -176,7 +176,7 @@ if($num_rows > 0)
                     echo "<p class=\"others\" style=\"max-height: 4em;overflow: hidden;\">";
                     $end = 1;   
                 }
-                echo (intval($cur_page) != 0) ? "<span class=\"dept-span tiny\"><a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=".$cur_page.".djvu&amp;zoom=page&amp;find=".$textSearchBox."/r\">".intval($cur_page)."</a> </span> " : "";
+                echo (intval($cur_page) != 0) ? "<span class=\"dept-span tiny\"><a href=\"viewReport.php?snum=".$snum."&amp;projectid=".$projectid."&amp;page=".$cur_page."&find=".$textSearchBox."\">".intval($cur_page)."</a> </span> " : "";
             }
             else
             {
@@ -188,7 +188,7 @@ if($num_rows > 0)
         else
         {
             $cur_page = $row['cur_page'];
-            echo (intval($cur_page) != 0) ? "<span class=\"dept-span tiny\"><a href=\"../Volumes/".$snum."/".$projectid."/index.djvu?djvuopts&amp;page=".$cur_page.".djvu&amp;zoom=page&amp;find=".$textSearchBox."/r\">".intval($cur_page)."</a> </span> " : "";
+            echo (intval($cur_page) != 0) ? "<span class=\"dept-span tiny\"><a href=\"viewReport.php?snum=".$snum."&amp;projectid=".$projectid."&amp;page=".$cur_page."&find=".$textSearchBox."\">".intval($cur_page)."</a> </span> " : "";
             $id = $projectid;
         }
 	}
