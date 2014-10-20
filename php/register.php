@@ -76,7 +76,7 @@ if(($error_val == 0) && ($isfirst == 0))
             $_SESSION['email'] = $email;
             $_SESSION['valid'] = 1;
             
-            echo "<p>Registration Successful!<br /><br /></p>";
+            echo "<p>Registration Successful! <br /><br /></p>";
             
             $to = $email;
 
