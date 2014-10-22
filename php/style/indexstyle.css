@@ -388,7 +388,6 @@ footer p{
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
 }
 .card img{
     font-size: 0.9em;
