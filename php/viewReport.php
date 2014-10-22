@@ -42,7 +42,7 @@ if(isset($_SESSION['login']))
 }
 else
 {
-    @header("Location: hello.php");
+    @header("Location: login.php");
     exit;
 }
 ?>
