@@ -26,7 +26,7 @@ if($db->connect_errno > 0)
 	exit(1);
 }
 
-$query = "select * from project where snum='$snum' and projectid='$projectid' order by poy DESC";
+$query = "select * from project where snum='$snum' and projectid='$projectid'";
 
 $result = $db->query($query); 
 $num_rows = $result ? $result->num_rows : 0;
