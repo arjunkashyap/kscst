@@ -2,7 +2,7 @@
 
 require_once("common.php");
 require_once("connect.php");
-require_once('recaptchalib.php');
+// require_once('recaptchalib.php');
 require_once('includes/class.phpmailer.php');
 
 $db = mysql_connect("localhost",$user,$password) or die("Not connected to database");
@@ -11,43 +11,44 @@ mysql_query("set names utf8");
     
 $error_message = array("0"=>"","1"=>"Name can not be left blank<br />","2"=>"E-mail can not be left blank<br />","3"=>"Profession field can not be left blank<br />","4"=>"Password field is empty<br />","5"=>"Confirm-password field is empty<br />","6"=>"Passwords not in confirmation<br />","7"=>"Invalid CAPTCHA! Please try again<br />","8"=>"Invalid e-mail!<br />");
 
-$publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
-$privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
+// $publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
+// $privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
 
 $error_val = 0;
+$isfirst = 1;
 
-if(isset($_POST['affiliation'])){$affiliation = $_POST['affiliation'];if($affiliation == ''){$error_val = 4;}}else{$affiliation = '';}
-if(isset($_POST['profession'])){$profession = $_POST['profession'];if($profession == ''){$error_val = 3;}}else{$profession = '';}
-if(isset($_POST['email'])){$email = $_POST['email'];if($email == ''){$error_val = 2;}else{if(!(preg_match("/.*\@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+/", $email))){$error_val = 8;}}}else{$email = '';}
-if(isset($_POST['name'])){$name = $_POST['name'];if($name == ''){$error_val = 1;}}else{$name = '';}
+if(isset($_POST['affiliation'])){$affiliation = $_POST['affiliation'];$isfirst = 0;if($affiliation == ''){$error_val = 4;}}else{$affiliation = '';}
+if(isset($_POST['profession'])){$profession = $_POST['profession'];$isfirst = 0;if($profession == ''){$error_val = 3;}}else{$profession = '';}
+if(isset($_POST['email'])){$email = $_POST['email'];$isfirst = 0;if($email == ''){$error_val = 2;}else{if(!(preg_match("/.*\@[a-zA-Z0-9\.]+\.[a-zA-Z0-9\.]+/", $email))){$error_val = 8;}}}else{$email = '';}
+if(isset($_POST['name'])){$name = $_POST['name'];$isfirst = 0;if($name == ''){$error_val = 1;}}else{$name = '';}
 
 if($error_val == 0) {
-    if(isset($_POST['cpassword'])){$cpassword = $_POST['cpassword'];if($cpassword == ''){$error_val = 5;}}else{$cpassword = '';}
-    if(isset($_POST['password'])){$pwd = $_POST['password'];if($pwd == ''){$error_val = 4;}}else{$pwd = '';}
+    if(isset($_POST['cpassword'])){$cpassword = $_POST['cpassword'];$isfirst = 0;if($cpassword == ''){$error_val = 5;}}else{$cpassword = '';}
+    if(isset($_POST['password'])){$pwd = $_POST['password'];$isfirst = 0;if($pwd == ''){$error_val = 4;}}else{$pwd = '';}
 }
 if($error_val == 0) {
     if($pwd != $cpassword){$error_val = 6;}
 }
 
-$resp = null;
-$error = null;
+// $resp = null;
+// $error = null;
 
-$isfirst = 1;
-if($error_val == 0)
-{
-    if (isset($_POST["recaptcha_response_field"])) {
-            $isfirst = 0;
-            $resp = recaptcha_check_answer ($privatekey,
-                                            $_SERVER["REMOTE_ADDR"],
-                                            $_POST["recaptcha_challenge_field"],
-                                            $_POST["recaptcha_response_field"]);
-            if ($resp->is_valid) {
+// if($error_val == 0)
+// {
+//     if (isset($_POST["recaptcha_response_field"])) {
+//             $isfirst = 0;
+//             $resp = recaptcha_check_answer ($privatekey,
+//                                             $_SERVER["REMOTE_ADDR"],
+//                                             $_POST["recaptcha_challenge_field"],
+//                                             $_POST["recaptcha_response_field"]);
+//             if ($resp->is_valid) {
                     
-            } else {
-                    $error_val = 7;
-            }
-    }
-}
+//             }
+//             //  else {
+//             //         $error_val = 7;
+//             // }
+//     }
+// }
 
 include("includes/header.php");
 echo "<div class=\"mainpage\">";
@@ -149,11 +150,11 @@ elseif(($error_val > 0) || ($isfirst == 1))
                             <label for="cpassword">Confirm Password&nbsp;<span class="clr2">*</span></label><br />
                             <input class="rinput" type="password" name="cpassword" />
                         </li>
-                        <li>
+<!--                         <li>
 <?php
-echo recaptcha_get_html($publickey);
+// echo recaptcha_get_html($publickey);
 ?>
-                        </li>
+                        </li> -->
                         <li>
                             <input class="rsubmit" type="submit" name="submit" value="submit"/>
                         </li>

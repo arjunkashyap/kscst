@@ -8,8 +8,8 @@ require_once("common.php");
 require_once("connect.php");
 require_once('recaptchalib.php');
 require_once('includes/class.phpmailer.php');
-$publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
-$privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
+// $publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
+// $privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
 
 if(isset($_GET['status']))
 {
@@ -23,31 +23,32 @@ elseif(isset($_GET['reset']))
     $reset = $_GET['reset'];
     
     $error_val = 0;
+    $isfirst = 1;
+
     $error_message = array("0"=>"","1"=>"New Password field empty<br />","2"=>"Confirm new password field empty<br />","3"=>"Passwords not in confirmation<br />","4"=>"Invalid CAPTCHA! Please try again<br />","5"=>"New Password field empty<br />");
-    if(isset($_POST['cpassword'])){$cpwd = $_POST['cpassword'];if($cpwd == ''){$error_val = 4;}}else{$cpwd = '';}
-    if(isset($_POST['password'])){$pwd = $_POST['password'];if($pwd == ''){$error_val = 5;}}else{$pwd = '';}
+    if(isset($_POST['cpassword'])){$cpwd = $_POST['cpassword'];$isfirst = 0;if($cpwd == ''){$error_val = 4;}}else{$cpwd = '';}
+    if(isset($_POST['password'])){$pwd = $_POST['password'];$isfirst = 0;if($pwd == ''){$error_val = 5;}}else{$pwd = '';}
     if($pwd != $cpwd){$error_val = 3;}
     
-    $resp = null;
-    $error = null;
+    // $resp = null;
+    // $error = null;
     
-    $isfirst = 1;
-    if($error_val == 0)
-    {
+    // if($error_val == 0)
+    // {
     
-        if (isset($_POST["recaptcha_response_field"])) {
-                $isfirst = 0;
-                $resp = recaptcha_check_answer ($privatekey,
-                                                $_SERVER["REMOTE_ADDR"],
-                                                $_POST["recaptcha_challenge_field"],
-                                                $_POST["recaptcha_response_field"]);
-                if ($resp->is_valid) {
+    //     if (isset($_POST["recaptcha_response_field"])) {
+    //             $isfirst = 0;
+    //             $resp = recaptcha_check_answer ($privatekey,
+    //                                             $_SERVER["REMOTE_ADDR"],
+    //                                             $_POST["recaptcha_challenge_field"],
+    //                                             $_POST["recaptcha_response_field"]);
+    //             if ($resp->is_valid) {
                         
-                } else {
-                        $error_val = 4;
-                }
-        }
-    }
+    //             } else {
+    //                     $error_val = 4;
+    //             }
+    //     }
+    // }
     
     if(hasResetExpired($reset))
     {
@@ -131,14 +132,14 @@ elseif(isset($_GET['reset']))
 						<label for="cpassword">Confirm new password&nbsp;<span class="clr2">*</span></label><br />
 						<input class="rinput" type="password" name="cpassword" />
 					</li>
-					<li>
+					<!-- <li>
 <?php
-require_once('recaptchalib.php');
-$publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
-$privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
-echo recaptcha_get_html($publickey);
+// require_once('recaptchalib.php');
+// $publickey = "6Lc6KPMSAAAAAJ-yzoW7_KCxyv2bNEZcLImzc7I8";
+// $privatekey = "6Lc6KPMSAAAAANrIJ99zGx8wxzdUJ6SwQzk1BgXX";
+// echo recaptcha_get_html($publickey);
 ?>
-					</li>
+					</li> -->
                     <li>
 						<input class="rsubmit" type="submit" name="submit" value="submit"/>
 					</li>
