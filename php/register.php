@@ -84,8 +84,7 @@ if(($error_val == 0) && ($isfirst == 0))
             $message = "Dear $name,<br /><br />Use the following link within the next 24 hours to confirm your registration:<br /><a href=\"http://spp.kscst.iisc.ernet.in/php/verifyRegistration.php?verify=$hash\">http://spp.kscst.iisc.ernet.in/php/verifyRegistration.php?verify=$hash</a><br /><br />Thanks,<br />Team SPP<br />Karnataka State Council for Science and Technology";
 
                 $mail = new PHPMailer();
-                $mail->isSMTP();
-                $mail->Host = "smtp.kscst.iisc.ernet.in";
+                $mail->isSendmail();
                 $mail->isHTML(true);
                 $mail->WordWrap = 50;
                 $mail->setFrom($supportEmail, $supportName);
