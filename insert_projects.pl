@@ -12,6 +12,10 @@ open(IN,"kscst.xml") or die "can't open kscst.xml\n";
 
 my $dbh=DBI->connect("DBI:mysql:database=$db;host=$host","$usr","$pwd");
 
+$sth11_aux=$dbh->prepare("DROP TABLE IF EXISTS project");
+$sth11_aux->execute();
+$sth11_aux->finish(); 
+
 $sth11=$dbh->prepare("CREATE TABLE project(snum varchar(5),
 year varchar(20),
 title varchar(500),

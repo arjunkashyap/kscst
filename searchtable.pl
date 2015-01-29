@@ -5,10 +5,13 @@ $db = $ARGV[1];
 $usr = $ARGV[2];
 $pwd = $ARGV[3];
 
-
 use DBI();
 
 my $dbh=DBI->connect("DBI:mysql:database=$db;host=$host","$usr","$pwd");
+
+$sth11_aux=$dbh->prepare("DROP TABLE IF EXISTS searchtable");
+$sth11_aux->execute();
+$sth11_aux->finish(); 
 
 $sth11=$dbh->prepare("CREATE TABLE searchtable(snum varchar(5),
 year varchar(20),

@@ -9,6 +9,10 @@ use DBI();
 
 my $dbh=DBI->connect("DBI:mysql:database=$db;host=$host","$usr","$pwd");
 
+$sth11_aux=$dbh->prepare("DROP TABLE IF EXISTS ocr");
+$sth11_aux->execute();
+$sth11_aux->finish(); 
+
 $sth11=$dbh->prepare("CREATE TABLE ocr(snum varchar(10),
 projectid varchar(10),
 cur_page varchar(10),
