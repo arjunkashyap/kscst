@@ -24,14 +24,15 @@ advisor varchar(300),
 date DATE, 
 award varchar(10),
 poy varchar(10),
+type varchar(10),
 projectid varchar(8),
 cur_page varchar(5),
-text varchar(5000)) ENGINE=MyISAM");
+text varchar(5000)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_general_ci");
 
 $sth11->execute();
 $sth11->finish();
 
-$sth1=$dbh->prepare("select * from project where snum between '032' and '036' order by projectid");
+$sth1=$dbh->prepare("select * from project where snum >= '032' order by projectid");
 $sth1->execute();
 
 while($ref=$sth1->fetchrow_hashref())
@@ -47,6 +48,7 @@ while($ref=$sth1->fetchrow_hashref())
 	$date = $ref->{'date'};
 	$award = $ref->{'award'};
 	$poy = $ref->{'poy'};
+	$type = $ref->{'type'};
 	$projectid = $ref->{'projectid'};	
 	
 	$title =~ s/'/\\'/g;
@@ -64,7 +66,7 @@ while($ref=$sth1->fetchrow_hashref())
 		$text = $ref2->{'text'};
 		$cur_page = $ref2->{'cur_page'};
 		
-		$sth4=$dbh->prepare("insert into searchtable values('$snum','$year','$title','$abstract','$college','$department','$members','$advisor','$date','$award','$poy','$projectid','$cur_page','$text')");
+		$sth4=$dbh->prepare("insert into searchtable values('$snum','$year','$title','$abstract','$college','$department','$members','$advisor','$date','$award','$poy','$type','$projectid','$cur_page','$text')");
 		$text = '';
 		$sth4->execute();
 		$sth4->finish();

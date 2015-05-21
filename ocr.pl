@@ -16,7 +16,7 @@ $sth11_aux->finish();
 $sth11=$dbh->prepare("CREATE TABLE ocr(snum varchar(10),
 projectid varchar(10),
 cur_page varchar(10),
-text varchar(5000)) ENGINE=MyISAM");
+text varchar(5000)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_general_ci");
 
 $sth11->execute();
 $sth11->finish(); 
