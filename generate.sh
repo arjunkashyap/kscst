@@ -12,4 +12,6 @@ echo "CREATE TABLE IF NOT EXISTS reset (hash varchar(100), email varchar(100), n
 perl insert_projects.pl $host $db $usr $pwd
 perl ocr.pl $host $db $usr $pwd
 perl searchtable.pl $host $db $usr $pwd
+perl wordInsert.pl $host $db $usr $pwd
 echo "create fulltext index text_index_records on searchtable (text);" | /usr/bin/mysql -u$usr -p$pwd $db
+echo "create fulltext index word_index on word (word);" | /usr/bin/mysql -u$usr -p$pwd $db
